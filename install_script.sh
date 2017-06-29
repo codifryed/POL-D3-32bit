@@ -1,11 +1,20 @@
 #!/usr/bin/env playonlinux-bash
-# Date : (2017-04-07)
-# Wine version used : 2.5-staging
-# Distribution used to test : Ubuntu 16.04 LTS
+# Date : (2017-06-28)
+# Wine version used : 2.11-staging
+# Distribution used to test : Ubuntu 17.04
 # NVidia GeForce GTX 960/PCIe/SSE2
 # AMD FX(tm)-6300 Six-Core Processor × 6
+# NVidia GTX 750Ti
    
 # CHANGELOG
+# [SomeGuy42] (28-JUN-2017)
+#  Wine 2.5-staging => 2.11-staging
+#  Blizzard app v1.8.3.8965
+#  Diablo 3 Patch 2.6.0.46006
+#  win10 => winxp  
+#    fixes blizzard app display bug but complains of future support
+#    futre alternative is ie8 but doesnt solve initial login window issue
+#    my testing shows winxp gives better performance (+~10fps)
 # [SomeGuy42] (09-APR-2017)
 #  Wine 2.0-rc3-staging => 2.5-staging
 #   2.5 has many preinstalled components and should make the install simpler/more stable
@@ -31,12 +40,12 @@
 [ "$PLAYONLINUX" = "" ] && exit 0
 source "$PLAYONLINUX/lib/sources"
    
-TITLE="Diablo III"
-WORKING_WINE_VERSION="2.5-staging"
+TITLE="Diablo III_2"
+WORKING_WINE_VERSION="2.11-staging"
 EDITOR="Blizzard Entertainment Inc."
 EDITOR_URL="http://www.blizzard.com"
-PREFIX="DiabloIII_32"
-AUTHOR="RavonTUS, SomeGuy42 and the POL Community"
+PREFIX="DiabloIII_32_2"
+AUTHOR="SomeGuy42, RavonTUS, and the POL Community"
    
 POL_GetSetupImages "http://files.playonlinux.com/resources/setups/$PREFIX/top.jpg" "http://files.playonlinux.com/resources/setups/$PREFIX/left.jpg" "$TITLE"
 POL_SetupWindow_Init
@@ -49,7 +58,7 @@ POL_SetupWindow_presentation "$TITLE" "$EDITOR" "$EDITOR_URL" "$AUTHOR" "$PREFIX
 POL_System_SetArch "x86"
 POL_System_TmpCreate "$PREFIX"
    
-POL_SetupWindow_message "$(eval_gettext 'NOTICE: This will install the Blizzard application first and configure the settings for Diablo 3.')\n\n$(eval_gettext 'The Blizzard app install may take longer than expected to continue to the next window, but it works in most cases. For example if it appears not to continue at the Installation Location window, wait a couple minutes and try clicking the Continue button again.')"
+POL_SetupWindow_message "$(eval_gettext 'NOTICE: This will install the Blizzard application first and configure the settings for Diablo 3.')"
    
 POL_Debug_Message "Downloading Install File -------------"
 cd "$POL_System_TmpDir"
@@ -64,7 +73,7 @@ POL_Wine_SelectPrefix "$PREFIX"
 POL_Wine_PrefixCreate "$WORKING_WINE_VERSION"
    
 POL_Debug_Message "Setting Wine Variables -----------------------"
-Set_OS "win10"
+Set_OS "winxp"
 # Updated Overrides, many of wine's dlls are up to spec now and diablo has even removed some of their own. 
 POL_Wine_OverrideDLL "native,builtin" "vcruntime140"
 POL_Wine_OverrideDLL "native,builtin" "msvcp140"
@@ -74,6 +83,7 @@ POL_Wine_OverrideDLL "native,builtin" "ucrtbase"
 # Updated dependancies, Most no longer needed due to wine 2.0 (07-APR-2017)
 POL_Call POL_Install_corefonts
 POL_Call POL_Install_Physx
+#POL_Call POL_Install_ie8    #IE8 for future alternative Blizzard App display fix (28-JUN-2017)
  
    
 POL_Debug_Message "Running Install File -------------------------"
@@ -88,7 +98,7 @@ POL_Shortcut "Battle.net Launcher.exe"  "$TITLE" "" "" "Game"
    
 POL_Debug_Message "Install Completed ----------------------------"
    
-POL_SetupWindow_message "$(eval_gettext 'Blizzard application Installation Complete')\n\n$(eval_gettext 'IMPORTANT: Login to the Blizzard app by using the email and password entries near the bottom of the login window, not the nice looking ones near the top. You may also want to check the box for Keep Me Always Loged In. Then login to Blizzard and install the Diablo III game files.')"
+POL_SetupWindow_message "$(eval_gettext 'Blizzard application Installation Complete!')\n\n$(eval_gettext 'Continue by starting the Blizzard app, logging in and installing the Diablo III game files.')\n\n$(eval_gettext 'The App may complain of Windows XP compatibility, just click ok, it shouldnt bother you again.')\n\n$(eval_gettext 'Enjoy!')"
  
 POL_SetupWindow_Close
 exit 0
