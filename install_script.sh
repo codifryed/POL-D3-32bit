@@ -40,11 +40,11 @@
 [ "$PLAYONLINUX" = "" ] && exit 0
 source "$PLAYONLINUX/lib/sources"
    
-TITLE="Diablo III_2"
+TITLE="Diablo III"
 WORKING_WINE_VERSION="2.11-staging"
 EDITOR="Blizzard Entertainment Inc."
 EDITOR_URL="http://www.blizzard.com"
-PREFIX="DiabloIII_32_2"
+PREFIX="DiabloIII_32"
 AUTHOR="SomeGuy42, RavonTUS, and the POL Community"
    
 POL_GetSetupImages "http://files.playonlinux.com/resources/setups/$PREFIX/top.jpg" "http://files.playonlinux.com/resources/setups/$PREFIX/left.jpg" "$TITLE"
