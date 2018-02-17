@@ -8,8 +8,17 @@
    
 # CHANGELOG
 # [SomeGuy42] (17-FEB-2017)
-#  Install fails, need to update...
-#  Wine 2.11-staging => Wine 2.21-staging
+#  Wine 2.11-staging => Wine 3.2
+#    v3 fixes a handful of bugs with the game but performance is a bit behind that of staging, waiting on staging team
+#  Battle.net app v1.10.1.9799
+#    It's called Battle.net again!
+#  Diablo 3 Patch 2.6.1.48432
+#  winxp => win7
+#    display bug is back but installation of game is not possible in xp
+#    previous possible fixes no longer work due to Battle.net update
+#  Removed remaining dependencies due to Battle.net/Wine updates
+#    corefonts install - was causing a bug where one couldn't login
+#  SystemSurvey.exe is causing a crash, wine knows about it. Just deleting the file is best workaround atm.
 # [metalmephisto] (7-JUL-2017)
 #  Message update about disabling Browser Acceleration
 # [SomeGuy42] (28-JUN-2017)
@@ -84,11 +93,6 @@ POL_Wine_OverrideDLL "native,builtin" "vcruntime140"
 POL_Wine_OverrideDLL "native,builtin" "msvcp140"
 POL_Wine_OverrideDLL "native,builtin" "ucrtbase" 
 
-  
-# Updated dependancies, Most no longer needed due to wine 2.0 (07-APR-2017)
-#POL_Call POL_Install_Physx
- 
-   
 POL_Debug_Message "Running Install File -------------------------"
 POL_Wine_WaitBefore "$TITLE"
 POL_Wine "$SetupIs"
@@ -98,8 +102,6 @@ POL_System_TmpDelete
    
 POL_Debug_Message "Creating Shortcut ----------------------------"
 POL_Shortcut "Battle.net Launcher.exe"  "$TITLE" "" "" "Game"
-# Remove crashing SystemSurvey (17-FEB-2018)
-rm "$HOME/.PlayOnLinux/wineprefix/DiabloIII_32/drive_c/Program\ Files/Battle.net/*/SystemSurvey.exe"
    
 POL_Debug_Message "Install Completed ----------------------------"
    
