@@ -7,6 +7,8 @@
 # NVidia GTX 750Ti
    
 # CHANGELOG
+# [metalmephisto] (7-JUL-2017)
+#  Message update about disabling Browser Acceleration
 # [SomeGuy42] (28-JUN-2017)
 #  Wine 2.5-staging => 2.11-staging
 #  Blizzard app v1.8.3.8965
@@ -98,7 +100,7 @@ POL_Shortcut "Battle.net Launcher.exe"  "$TITLE" "" "" "Game"
    
 POL_Debug_Message "Install Completed ----------------------------"
    
-POL_SetupWindow_message "$(eval_gettext 'Blizzard application Installation Complete!')\n\n$(eval_gettext 'Continue by starting the Blizzard app, logging in and installing the Diablo III game files.')\n\n$(eval_gettext 'The App may complain of Windows XP compatibility, just click ok, it shouldnt bother you again.')\n\n$(eval_gettext 'Enjoy!')"
+POL_SetupWindow_message "$(eval_gettext 'Blizzard application Installation Complete')\n\n$(eval_gettext 'IMPORTANT: Login to the Blizzard app by using the email and password entries near the bottom of the login window, not the nice looking ones near the top. You may also want to check the box for Keep Me Always Loged In. Then login to Blizzard and install the Diablo III game files. IMPORTANT: You may have to go to settings and disable browser acceleration, this often fixes display issues.')"
  
 POL_SetupWindow_Close
 exit 0
